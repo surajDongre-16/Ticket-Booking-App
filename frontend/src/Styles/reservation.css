@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+label,
+select,
+button {
+  margin: 5px;
+  font-weight: bold;
+}

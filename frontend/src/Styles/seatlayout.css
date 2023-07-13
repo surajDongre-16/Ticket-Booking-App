@@ -1,0 +1,15 @@
+.coach {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: calc((50px + 1px * 2 + 7px * 2) * 7);
+}
+.seatBox {
+  width: 30px;
+  margin: 7px;
+  height: auto;
+  padding: 7px;
+  text-align: center;
+  border-radius: 7px;
+  border: 1px solid #000;
+}
