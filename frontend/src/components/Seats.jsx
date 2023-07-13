@@ -86,7 +86,7 @@ const Seats = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        noOfSeats: parseInt(seatCount),
+        number: parseInt(seatCount),
       })
       .then((data) => {
         console.log(data);
@@ -129,7 +129,8 @@ const Seats = () => {
   const handleChange = (event) => {
     setSeatCount(event.target.value);
   };
-
+  console.log(seats, "seats");
+  console.log(bookedSeats, "bookedseats");
   return (
     <div
       style={{

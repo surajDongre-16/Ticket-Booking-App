@@ -1,6 +1,5 @@
 const express = require("express");
 const seatRouter = express.Router();
-// const { SeatModel } = require("../models/seat.model");
 const SeatModel = require("../models/Seat.module");
 
 // Book seats
@@ -58,9 +57,8 @@ seatRouter.get("/bookedseats", async (req, res) => {
       }, []);
       return [...acc, ...a];
     }, []);
-    console.log(arr, "arr");
-    // res.status(200).send({ bookedSeats });
-    res.status(200).send({ bookedSeats: arr });
+    res.status(200).send({ bookedSeats });
+    // res.status(200).send({ bookedSeats: arr });
   } catch (error) {
     res.status(400).send({ msg: error.message });
   }
