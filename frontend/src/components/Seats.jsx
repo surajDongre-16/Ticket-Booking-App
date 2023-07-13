@@ -19,7 +19,7 @@ const Seats = () => {
   // GET
   const fetchBookedSeats = () => {
     axios
-      .get("https://fair-blue-penguin-gear.cyclic.app/bookedseats")
+      .get("https://ticket-booking-app-fkin.onrender.com/bookedseats")
       .then((data) => {
         console.log(data.data.bookedSeats);
         let bookedSeatsLengh = data.data.bookedSeats.length;
@@ -48,7 +48,7 @@ const Seats = () => {
   // DELETE (RESET)
   const handleReset = () => {
     axios
-      .delete("https://fair-blue-penguin-gear.cyclic.app/deleteall")
+      .delete("https://ticket-booking-app-fkin.onrender.com/deleteall")
       .then((res) => {
         console.log(res.data);
         setAlert(`${res.data.msg}`);
@@ -82,7 +82,7 @@ const Seats = () => {
     }
 
     axios
-      .post("https://fair-blue-penguin-gear.cyclic.app/booked", {
+      .post("https://ticket-booking-app-fkin.onrender.com/booked", {
         headers: {
           "Content-Type": "application/json",
         },
