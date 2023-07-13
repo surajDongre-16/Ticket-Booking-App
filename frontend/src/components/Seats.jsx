@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Styles from "../Styles/Seats.module.css";
 import axios from "axios";
 
 const Seats = () => {
@@ -10,7 +9,6 @@ const Seats = () => {
   const [seats, setSeats] = useState(new Array(totalSeats).fill(false));
   const [bookedSeats, setBookedSeats] = useState([]);
   const [seatCount, setSeatCount] = useState("");
-  const [alert, setAlert] = useState("");
 
   useEffect(() => {
     fetchBookedSeats();
@@ -21,11 +19,10 @@ const Seats = () => {
     axios
       .get("https://ticket-booking-app-fkin.onrender.com/bookedseats")
       .then((data) => {
-        console.log(data.data.bookedSeats);
         let bookedSeatsLengh = data.data.bookedSeats.length;
         for (let i = 0; i < bookedSeatsLengh; i++) {
           const newSeats = [...seats];
-          let seatNumbers = data.data.bookedSeats[i].seatNumber;
+          let seatNumbers = data.data.bookedSeats[i].seats;
           seatNumbers.forEach((seatNumber) => {
             const seatIndex = getSeatIndex(seatNumber.seatNumber);
             if (seatIndex !== -1) {
@@ -38,10 +35,10 @@ const Seats = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        setAlert("Something went wrong. Please try again later.");
-        setTimeout(() => {
-          setAlert("");
-        }, 3000);
+        alert("Something went wrong. Please try again later.");
+        // setTimeout(() => {
+        //   alert("");
+        // }, 3000);
       });
   };
 
@@ -51,34 +48,35 @@ const Seats = () => {
       .delete("https://ticket-booking-app-fkin.onrender.com/deleteall")
       .then((res) => {
         console.log(res.data);
-        setAlert(`${res.data.msg}`);
-        setTimeout(() => {
-          setAlert("");
-        }, 3000);
+        alert(`${res.data.msg}`);
+        // setTimeout(() => {
+        //   alert("");
+        // }, 3000);
         fetchBookedSeats();
       })
       .catch((error) => {
         console.error("Error:", error);
-        setAlert("Something went wrong. Please try again later.");
-        setTimeout(() => {
-          setAlert("");
-        }, 3000);
+        alert("Something went wrong. Please try again later.");
+        // setTimeout(() => {
+        //   alert("");
+        // }, 3000);
       });
   };
 
   // POST
   const handleSeatBooking = () => {
     if (seatCount === "" || parseInt(seatCount) <= 0) {
-      setAlert("Please enter a valid number of seats");
-      setTimeout(() => {
-        setAlert("");
-      }, 3000);
+      alert("Please enter a valid number of seats");
+      // setTimeout(() => {
+      //   alert("");
+      // }, 3000);
       return;
     } else if (parseInt(seatCount) > 7) {
-      setAlert("You can book only 7 seats at a time");
-      setTimeout(() => {
-        setAlert("");
-      }, 3000);
+      alert("You can book only 7 seats at a time");
+      // setTimeout(() => {
+      //   alert("");
+      // }, 3000);
+      return;
     }
 
     axios
@@ -90,18 +88,18 @@ const Seats = () => {
       })
       .then((data) => {
         console.log(data);
-        setAlert("Seat Book SuccessFully");
-        setTimeout(() => {
-          setAlert("");
-        }, 3000);
+        alert("Seat Book SuccessFully");
+        // setTimeout(() => {
+        //   alert("");
+        // }, 3000);
         fetchBookedSeats();
       })
       .catch((error) => {
         console.error("Error:", error);
-        setAlert("Something went wrong. Please try again later.");
-        setTimeout(() => {
-          setAlert("");
-        }, 3000);
+        alert("Something went wrong. Please try again later.");
+        // setTimeout(() => {
+        //   alert("");
+        // }, 3000);
       });
   };
 
@@ -129,8 +127,6 @@ const Seats = () => {
   const handleChange = (event) => {
     setSeatCount(event.target.value);
   };
-  console.log(seats, "seats");
-  console.log(bookedSeats, "bookedseats");
   return (
     <div
       style={{
@@ -199,7 +195,7 @@ const Seats = () => {
           fontWeight: "bold",
         }}
       >
-        {alert}
+        {"hello"}
       </h3>
       <br />
       <br />
