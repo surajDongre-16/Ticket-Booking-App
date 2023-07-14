@@ -82,12 +82,12 @@ seatRouter.post("/booked", async (req, res) => {
     const seatDocuments = newBookedSeats.map((seat) => {
       return {
         seatNumber: seat.seatNumber,
-        isBooked: !seat.isBooked,
+        isBooked: seat.isBooked,
       };
     });
 
     try {
-      const newSeatBook = new SeatModel({ seats: seatDocuments });
+      const newSeatBook = new SeatModel({ seatNumber: seatDocuments });
       await newSeatBook.save();
       res.status(200).send({ msg: "New seats booked" });
     } catch (error) {

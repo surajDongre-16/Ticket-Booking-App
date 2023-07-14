@@ -5,10 +5,7 @@ import SlotsBooking from "./components/SlotsBooking";
 function App() {
   return (
     <div className="App">
-      <div className="container" >
-        <Seats />
-        <SlotsBooking />
-      </div>
+      <Seats />
     </div>
   );
 }
