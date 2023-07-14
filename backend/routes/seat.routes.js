@@ -48,15 +48,15 @@ const generateSeatNumber = (seatIndex) => {
 seatRouter.get("/bookedseats", async (req, res) => {
   try {
     const bookedSeats = await SeatModel.find();
-    const arr = bookedSeats.reduce((acc, item) => {
-      const { seats } = item;
+    // const arr = bookedSeats.reduce((acc, item) => {
+    //   const { seats } = item;
 
-      const a = seats.reduce((ac, i) => {
-        const { seatNumber } = i;
-        return [...ac, seatNumber];
-      }, []);
-      return [...acc, ...a];
-    }, []);
+    //   const a = seats.reduce((ac, i) => {
+    //     const { seatNumber } = i;
+    //     return [...ac, seatNumber];
+    //   }, []);
+    //   return [...acc, ...a];
+    // }, []);
     res.status(200).send({ bookedSeats });
     // res.status(200).send({ bookedSeats: arr });
   } catch (error) {
