@@ -13,6 +13,7 @@ const bookSeats = (seatCount) => {
   const result = [];
   for (let i = 0; i <= totalSeats - seatCount; i++) {
     let seatsPerRow = i < totalSeats - lastRowSeats ? seatsInRow : lastRowSeats;
+    console.log(seatsPerRow, "seatsPerRow");
     if (
       (i % seatsPerRow) + seatCount <= seatsPerRow &&
       seats.slice(i, i + seatCount).every((x) => x === false)
@@ -34,11 +35,11 @@ const bookSeats = (seatCount) => {
 
 const generateSeatNumber = (seatIndex) => {
   let rowLetter = String.fromCharCode(
-    "a".charCodeAt(0) + Math.floor(seatIndex / seatsInRow)
+    "A".charCodeAt(0) + Math.floor(seatIndex / seatsInRow)
   );
   let seatNumber = (seatIndex % seatsInRow) + 1;
   if (seatIndex >= totalSeats - lastRowSeats) {
-    rowLetter = "z";
+    rowLetter = "Z";
     seatNumber = seatIndex - (totalSeats - lastRowSeats) + 1;
   }
   return rowLetter + seatNumber;
@@ -78,6 +79,7 @@ seatRouter.delete("/deleteall", async (req, res) => {
 seatRouter.post("/booked", async (req, res) => {
   const seatCount = req.body.number;
   const newBookedSeats = bookSeats(seatCount);
+  console.log(newBookedSeats, "NEWbOOKKED");
   if (newBookedSeats.length > 0) {
     const seatDocuments = newBookedSeats.map((seat) => {
       return {

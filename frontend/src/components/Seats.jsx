@@ -22,7 +22,7 @@ const Seats = () => {
         let bookedSeatsLengh = data.data.bookedSeats.length;
         for (let i = 0; i < bookedSeatsLengh; i++) {
           const newSeats = [...seats];
-          let seatNumbers = data.data.bookedSeats[i].seats;
+          let seatNumbers = data.data.bookedSeats[i].seatNumber;
           seatNumbers.forEach((seatNumber) => {
             const seatIndex = getSeatIndex(seatNumber.seatNumber);
             if (seatIndex !== -1) {
@@ -87,7 +87,6 @@ const Seats = () => {
         number: parseInt(seatCount),
       })
       .then((data) => {
-        console.log(data);
         alert("Seat Book SuccessFully");
         // setTimeout(() => {
         //   alert("");
@@ -105,11 +104,11 @@ const Seats = () => {
 
   const generateSeatNumber = (seatIndex) => {
     let rowLetter = String.fromCharCode(
-      "a".charCodeAt(0) + Math.floor(seatIndex / seatsInRow)
+      "A".charCodeAt(0) + Math.floor(seatIndex / seatsInRow)
     );
     let seatNumber = (seatIndex % seatsInRow) + 1;
     if (seatIndex >= totalSeats - lastRowSeats) {
-      rowLetter = "z";
+      rowLetter = "Z";
       seatNumber = seatIndex - (totalSeats - lastRowSeats) + 1;
     }
     return rowLetter + seatNumber;
